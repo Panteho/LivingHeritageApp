@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">LivingHeritage</string>
+    <string name="title_activity_tree_map">Map</string>
+    <string name="sigin">Sign In</string>
+    <string name="email_hint">Enter email here</string>
+    <string name="password_hint">Enter password here</string>
+</resources>
