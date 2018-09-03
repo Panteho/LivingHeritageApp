@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -24,5 +25,9 @@ public class BaseActivity extends AppCompatActivity {
         Canvas canvas = new Canvas(bitmap);
         vectorDrawable.draw(canvas);
         return BitmapDescriptorFactory.fromBitmap(bitmap);
+    }
+
+    public FirebaseAuth getFirebaseAuth() {
+        return ((BaseApplication)getApplication()).getFirebaseAuth();
     }
 }

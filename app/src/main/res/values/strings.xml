@@ -2,6 +2,10 @@
     <string name="app_name">LivingHeritage</string>
     <string name="title_activity_tree_map">Map</string>
     <string name="sigin">Sign In</string>
-    <string name="email_hint">Enter email here</string>
-    <string name="password_hint">Enter password here</string>
+    <string name="email_hint">Eg: johndoe@gmail.com</string>
+    <string name="password_hint">6 letter word</string>
+    <string name="re_password_hint">Retype password here</string>
+    <string name="phone_hint">Eg:8005671233</string>
+    <string name="name_hint">Eg: John Doe</string>
+    <string name="signup">Sign Up</string>
 </resources>

@@ -1,6 +1,8 @@
 package com.people_patterns.livingheritage
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -43,6 +45,11 @@ class TreeMapActivity : BaseActivity(), OnMapReadyCallback {
     fun addMarkerToMap(latlog: LatLng, title: String) {
         val marker = mMap.addMarker(MarkerOptions().position(latlog).title(title))
         marker.setIcon(bitmapDescriptorFromVector(this, R.drawable.ic_treetag_01));
+    }
+
+    fun gotoSignUp(view: View) {
+        val intent = Intent(this, SignUpActivity::class.java)
+        startActivity(intent)
     }
 
 
