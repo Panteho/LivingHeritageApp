@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.google.android.gms.tasks.OnCompleteListener
 import com.people_patterns.livingheritage.base.BaseActivity
+import com.people_patterns.livingheritage.model.User
 
 class SignUpActivity : BaseActivity() {
 
@@ -34,8 +36,12 @@ class SignUpActivity : BaseActivity() {
     private fun createUser(name: String, email: String, phone: String, password: String) {
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{
             Toast.makeText(this, it.result.user.email, Toast.LENGTH_SHORT)
+            val newUser = User(name, email, phone, it.result.user.uid)
+            saveUserToDb(newUser)
         }
     }
 
-
+    private fun saveUserToDb(newUser: User) {
+        createUser(newUser, OnCompleteListener { Toast.makeText(this, "User created", Toast.LENGTH_SHORT) })
+    }
 }

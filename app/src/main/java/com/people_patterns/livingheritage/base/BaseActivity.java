@@ -9,7 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.people_patterns.livingheritage.model.User;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -29,5 +33,20 @@ public class BaseActivity extends AppCompatActivity {
 
     public FirebaseAuth getFirebaseAuth() {
         return ((BaseApplication)getApplication()).getFirebaseAuth();
+    }
+
+    public FirebaseDatabase getFirebaseDatabase() {
+        return ((BaseApplication)getApplication()).getFirebaseDatabase();
+    }
+
+    public void addToDatabase(String key, int value){
+        getFirebaseDatabase();
+        DatabaseReference myRef = getFirebaseDatabase().getReference(key);
+        myRef.setValue(value);
+    }
+
+    public void createUser(User user, OnCompleteListener<Void> callback) {
+        DatabaseReference reference = getFirebaseDatabase().getReference("users").push();
+        reference.setValue(user).addOnCompleteListener(callback);
     }
 }
