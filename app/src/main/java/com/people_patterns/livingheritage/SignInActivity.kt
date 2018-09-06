@@ -15,6 +15,10 @@ class SignInActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
+        if(firebaseAuth.currentUser != null) {
+            gotoHomepage()
+            finish()
+        }
     }
 
     fun gotoSignUp(view: View){
@@ -38,7 +42,7 @@ class SignInActivity : BaseActivity() {
 
                     } else {
                         // If sign in fails, display a message to the user.
-                        Toast.makeText(this@SignInActivity, "Please enter correct details", Toast.LENGTH_SHORT);
+                        Toast.makeText(this@SignInActivity, "Please enter correct details", Toast.LENGTH_SHORT).show();
                     }
 
                 })

@@ -32,9 +32,8 @@
 
         <activity
             android:name=".TreeMapActivity"
-            android:label="@string/title_activity_tree_map"></activity>
-        <activity android:name=".SignUpActivity">
-        </activity>
+            android:label="@string/title_activity_tree_map" />
+        <activity android:name=".SignUpActivity"></activity>
         <activity android:name=".SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,6 +41,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".TagTreeActivity"></activity>
     </application>
 
 </manifest>

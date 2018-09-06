@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="256dp"
+        android:layout_height="256dp"
+        android:src="@drawable/ic_treetag_01"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:id="@+id/txt_company_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        tools:text="Tree Details"
+        android:layout_below="@id/iv_logo"
+        android:layout_marginTop="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+
+    <EditText
+        android:id="@+id/edt_treename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/txt_company_name"
+        android:layout_marginTop="8dp"
+        android:inputType="text"
+        android:hint="@string/treehint"/>
+
+    <EditText
+        android:id="@+id/edt_treedescription"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:minWidth="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/edt_treename"
+        android:layout_marginTop="8dp"
+        android:inputType="text"
+        android:hint="@string/descriptionhint"/>
+
+
+    <Button
+        android:id="@+id/btn_tagtree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tagtree"
+        android:layout_below="@id/edt_treedescription"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8dp"
+        android:onClick="signInUser"/>
+
+
+
+</RelativeLayout>
