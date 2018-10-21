@@ -7,11 +7,10 @@
 
     <ImageView
         android:id="@+id/iv_logo"
-        android:layout_width="256dp"
-        android:layout_height="256dp"
-        android:src="@drawable/ic_treetag_01"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
         android:layout_centerHorizontal="true"
-        />
+        android:src="@drawable/ic_treetag_01" />
 
     <TextView
         android:id="@+id/txt_company_name"
@@ -23,13 +22,23 @@
         android:layout_marginTop="8dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
 
+    <TextView
+        android:id="@+id/txt_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        tools:text="Location Details(latitude, longitude)"
+        android:layout_below="@id/txt_company_name"
+        android:layout_marginTop="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+
     <EditText
         android:id="@+id/edt_treename"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minWidth="250dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/txt_company_name"
+        android:layout_below="@id/txt_location"
         android:layout_marginTop="8dp"
         android:inputType="text"
         android:hint="@string/treehint"/>

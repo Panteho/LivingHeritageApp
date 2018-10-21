@@ -6,9 +6,11 @@ data class User(val name: String,
                 val id: String)
 
 data class Tree(val name: String,
-                val imagePath: String,
+                var imagePath: String,
                 val description: String,
                 val taggerId: String,
                 val guardianId: String,
-                val lat: Long,
-                val long: Long)
+                val lat: Double,
+                val long: Double) {
+    constructor() : this("", "", "", "", "", 0.0, 0.0)
+}
