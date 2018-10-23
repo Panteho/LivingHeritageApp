@@ -34,6 +34,7 @@ class SignUpActivity : BaseActivity() {
     }
 
     private fun createUser(name: String, email: String, phone: String, password: String) {
+        showProgress()
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{
             Toast.makeText(this, it.result.user.email, Toast.LENGTH_SHORT)
             val newUser = User(name, email, phone, it.result.user.uid)
@@ -42,6 +43,10 @@ class SignUpActivity : BaseActivity() {
     }
 
     private fun saveUserToDb(newUser: User) {
-        createUser(newUser, OnCompleteListener { Toast.makeText(this, "User created", Toast.LENGTH_SHORT) })
+        createUser(newUser, {
+            Toast.makeText(this, "User created with id " + newUser.email, Toast.LENGTH_SHORT)
+            hideProgress()
+            finish()
+        })
     }
 }

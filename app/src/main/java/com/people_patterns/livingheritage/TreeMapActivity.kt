@@ -3,6 +3,7 @@ package com.people_patterns.livingheritage
 import android.content.Intent
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
+import android.support.design.widget.BottomSheetBehavior
 import android.support.design.widget.FloatingActionButton
 import android.view.View
 import android.widget.ImageView
@@ -49,6 +50,7 @@ class TreeMapActivity : BaseActivity(), OnMapReadyCallback {
         txtGuardian = findViewById(R.id.txt_guardian)
         ivTree = findViewById(R.id.iv_tree_photo)
         constraintLayout = findViewById(R.id.container)
+        BottomSheetBehavior.from(constraintLayout).state = BottomSheetBehavior.STATE_HIDDEN
     }
 
     /**
@@ -63,16 +65,16 @@ class TreeMapActivity : BaseActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         val sydney = LatLng(15.508665, 73.834478)
+        mMap.setOnMarkerClickListener {
+            markerClicked(it.tag!!)
+        }
+        mMap.setOnMapClickListener {
+            addTreeAt(it)
+        }
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 10.0f))
         if(getbaseApp().location != null) {
             val latlng = LatLng(getbaseApp().getLocation().latitude, getbaseApp().getLocation().longitude)
             mMap.moveCamera(CameraUpdateFactory.newLatLng(latlng))
-            mMap.setOnMarkerClickListener {
-                markerClicked(it.tag!!)
-            }
-            mMap.setOnMapClickListener {
-                addTreeAt(it)
-            }
         }
         showAllTrees()
     }
@@ -88,6 +90,9 @@ class TreeMapActivity : BaseActivity(), OnMapReadyCallback {
         if (tag == null) {
             return true;
         }
+        if(BottomSheetBehavior.from(constraintLayout).state == BottomSheetBehavior.STATE_HIDDEN) {
+            BottomSheetBehavior.from(constraintLayout).state = BottomSheetBehavior.STATE_EXPANDED
+        }
         var tree = tag as Tree;
         txtTitle.text = tree.name
         txtDesc.text = tree.description
@@ -95,7 +100,11 @@ class TreeMapActivity : BaseActivity(), OnMapReadyCallback {
         txtGuardian.text = tree.guardianId
         getImageUrl(tree.imagePath, {
             if (it.exception == null) {
-                Picasso.get().load(it.result).into(ivTree)
+                ivTree.visibility = View.VISIBLE
+                Picasso.get().load(it.result).placeholder(R.drawable.ic_loading).into(ivTree)
+            }
+            else {
+                ivTree.visibility = View.GONE
             }
         })
         return true;

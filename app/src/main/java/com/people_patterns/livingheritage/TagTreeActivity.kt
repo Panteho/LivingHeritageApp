@@ -19,6 +19,7 @@ import com.people_patterns.livingheritage.base.BaseActivity
 import com.people_patterns.livingheritage.model.Tree
 import id.zelory.compressor.Compressor
 import kotlinx.android.synthetic.main.activity_tag_tree.*
+import org.jetbrains.annotations.NotNull
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -59,8 +60,9 @@ class TagTreeActivity : BaseActivity() {
                 lat = intent.getDoubleExtra("latitude", 0.0)
                 long = intent.getDoubleExtra("longitude", 0.0)
             }
-            val userId = "admin";
+            val userId = loggedInEmail;
             val tree = Tree(edtTreeName.text.toString(), "", edtTreeDescription.text.toString(), userId, "", lat, long)
+            showProgress()
             if (mCurrentPhotoPath != null) {
                 uploadImage(File(mCurrentPhotoPath ), tree, object : UploadFileCallback {
                     override fun uploadFailed() {
@@ -70,14 +72,16 @@ class TagTreeActivity : BaseActivity() {
                     override fun uploadSuccess() {
                         tree.imagePath = Uri.parse(mCurrentPhotoPath).lastPathSegment;
                         createTree(tree, {
-
+                            hideProgress()
+                            finish()
                         })
                     }
                 })
             }
             else {
-                createTree(tree, OnCompleteListener {
-
+                createTree(tree, {
+                    hideProgress()
+                    finish()
                 })
             }
         }
@@ -133,7 +137,7 @@ class TagTreeActivity : BaseActivity() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
             val compressedImageFile = Compressor(this).compressToFile(File(mCurrentPhotoPath));
             mCurrentPhotoPath = compressedImageFile.absolutePath
