@@ -9,8 +9,8 @@
         android:id="@+id/iv_logo"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:src="@drawable/ic_treetag_01"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_living_heritage_svg_01" />
 
 
 

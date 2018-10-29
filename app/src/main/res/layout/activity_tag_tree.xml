@@ -26,11 +26,11 @@
         android:id="@+id/txt_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        tools:text="Location Details(latitude, longitude)"
         android:layout_below="@id/txt_company_name"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        tools:text="Location Details(latitude, longitude)" />
 
     <EditText
         android:id="@+id/edt_treename"
